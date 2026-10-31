@@ -18,12 +18,41 @@ header{height:82px;display:flex;align-items:center;justify-content:space-between
 .contact-strip{border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;padding:20px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:0}.contact-strip strong{font-size:12px}.contact-strip .actions{display:flex;gap:9px}.outline{border:1px solid #ddd;border-radius:25px;padding:10px 16px;font-size:9px;font-weight:600}.footer{background:#fafafa;padding:35px 0 25px}.footer-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:30px;align-items:start}.footer-brand img{width:190px;max-width:100%;height:auto}.footer h3{font-size:8px;letter-spacing:1.4px;color:var(--blue);margin:0 0 10px}.footer p,.footer a{font-size:9px;line-height:1.8;color:#777;margin:0}.copyright{border-top:1px solid #e5e5e5;margin-top:25px;padding-top:15px;font-size:8px;color:#888;display:flex;justify-content:space-between;gap:15px}
 @media(max-width:760px){.wrap{width:calc(100% - 30px)}header{height:70px}.nav{gap:10px}.nav a:not(.pill){display:none}.pill{padding:12px 14px}.hero{grid-template-columns:1fr;padding:38px 7%;text-align:center}.hero h1{font-size:39px;letter-spacing:-1.7px}.hero p{margin-left:auto;margin-right:auto}.hero-cta,.hero-list{justify-content:center}.hero-visual{height:275px;margin-top:25px}.hero-visual:before{width:245px;height:245px}.logo-frame{max-width:360px}.area-grid{grid-template-columns:repeat(2,1fr);row-gap:32px}.about{grid-template-columns:1fr;gap:25px;padding:38px 7%}.dark-cta{padding:38px 20px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.contact-strip{gap:15px}.contact-strip .actions{flex-wrap:wrap;justify-content:flex-end}}
 @media(max-width:440px){.wordmark{font-size:15px}.hero h1{font-size:34px}.hero-visual{height:235px}.logo-frame{padding:12px}.credential{bottom:14px;right:0}.area-circle{width:132px;height:132px}.facts{gap:8px}.fact{padding:14px 11px}.about h2{font-size:26px}.contact-strip{align-items:flex-start;flex-direction:column}.contact-strip .actions{justify-content:flex-start}.footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto}.copyright{flex-direction:column}}
+
+/* Destaque principal: azul profundo e composição inspirada na referência Cloober */
+.hero{background:#00345f;color:#fff;min-height:470px;padding:55px 5.2%}
+.hero:before{background:#0a568d;opacity:.55}
+.hero:after{background:#e9eff4;opacity:.12}
+.hero .eyebrow{color:#dceaf4}
+.hero h1{color:#fff}
+.hero h1 span{color:#e9d9c7;text-decoration-color:#e9d9c7}
+.hero p{color:#e0eaf2}
+.hero-list{color:#fff;gap:18px}
+.hero-list span:before{color:#e9d9c7}
+.logo-frame{background:#fff;padding:14px;border-radius:18px;box-shadow:0 16px 40px #00182e55}
+.logo-frame img{max-height:290px;object-fit:contain}
+.credential{background:#f1e3d5;color:#00345f}
+.credential b{color:#00345f}
+@media(max-width:760px){.hero{background:#00345f;padding:38px 7%}}
+
 </style>
 </head>
 <body>
 <header class="wrap"><a class="wordmark" href="#inicio">Gabriel de Oliveira</a><nav class="nav"><a href="#atuacao">Atuação</a><a href="#sobre">O profissional</a><a href="#contato">Contato</a><a class="pill" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agendar atendimento <span>↗</span></a></nav></header>
 <main>
-<section class="wrap hero" id="inicio"><div class="hero-copy"><div class="eyebrow">Fisioterapia • Cuiabá – MT</div><h1>Mais movimento começa com <span>cuidado.</span></h1><p>Atendimento fisioterapêutico domiciliar com atenção individualizada, acolhimento e foco na recuperação da mobilidade e da qualidade de vida.</p><div class="hero-cta"><a class="pill" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agende uma avaliação <span>→</span></a></div><div class="hero-list"><span>Reabilitação funcional</span><span>Atendimento domiciliar</span><span>Cuidado individualizado</span></div></div><div class="hero-visual"><div class="logo-frame"><img src="assets/logo-gabriel.jpg" alt="Logotipo Gabriel de Oliveira Fisioterapia"></div><div class="credential"><b>CREFITO-9</b>437209-F</div></div></section>
+<section class="wrap hero" id="inicio">
+<div class="hero-copy">
+<div class="eyebrow">Fisioterapia • Cuiabá – MT</div>
+<h1>Mais movimento<br><span>começa com cuidado.</span></h1>
+<p>Atendimento fisioterapêutico domiciliar com atenção individualizada, acolhimento e foco na recuperação da mobilidade e da qualidade de vida.</p>
+<div class="hero-cta"><a class="pill" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agende uma avaliação <span>→</span></a></div>
+<div class="hero-list"><span>Reabilitação funcional</span><span>Atendimento domiciliar</span><span>Cuidado individualizado</span></div>
+</div>
+<div class="hero-visual">
+<div class="logo-frame"><img src="assets/logo-gabriel.jpg" alt="Logotipo Gabriel de Oliveira Fisioterapia"></div>
+<div class="credential"><b>GABRIEL DE OLIVEIRA</b>FISIOTERAPIA • CUIABÁ – MT</div>
+</div>
+</section>
 <section class="wrap areas" id="atuacao"><div class="section-kicker">ÁREAS DE ATUAÇÃO</div><div class="area-grid"><div class="area"><div class="area-circle"><span class="area-number">01</span><div class="area-icon">⌁</div><strong>Reabilitação<br>funcional</strong></div></div><div class="area"><div class="area-circle"><span class="area-number">02</span><div class="area-icon">✚</div><strong>Recuperação<br>pós-acidentes</strong></div></div><div class="area"><div class="area-circle"><span class="area-number">03</span><div class="area-icon">♧</div><strong>Atenção à pessoa<br>idosa</strong></div></div><div class="area"><div class="area-circle"><span class="area-number">04</span><div class="area-icon">⌂</div><strong>Atendimento<br>domiciliar</strong></div></div></div></section>
 <section class="wrap about" id="sobre"><div><div class="eyebrow">O PROFISSIONAL</div><h2>Fisioterapia com atenção à sua história.</h2><p>Gabriel de Oliveira é fisioterapeuta e realiza atendimento domiciliar em Cuiabá – MT, acompanhando pessoas em diferentes etapas da reabilitação.</p><p>O cuidado é construído a partir das necessidades de cada paciente, com respeito ao seu ritmo, à sua rotina e aos objetivos funcionais definidos durante a avaliação.</p></div><div class="facts"><div class="fact"><b>ATENDIMENTO DOMICILIAR</b><span>Cuidado no ambiente do paciente, considerando sua rotina e realidade.</span></div><div class="fact"><b>DO ACIDENTE À RECUPERAÇÃO</b><span>Acompanhamento fisioterapêutico durante o processo de reabilitação.</span></div><div class="fact"><b>ATENÇÃO À PESSOA IDOSA</b><span>Valorização da mobilidade, segurança e autonomia.</span></div><div class="fact"><b>ACOMPANHAMENTO INDIVIDUAL</b><span>Condutas orientadas pelas necessidades de cada pessoa.</span></div></div></section>
 <section class="wrap dark-cta" id="contato"><h2>Conte o que você precisa e converse com o fisioterapeuta.</h2><p>Entre em contato para tirar dúvidas e saber mais sobre o atendimento domiciliar em Cuiabá e região.</p><a class="pill" href="https://wa.me/5565993046131?text=Ol%C3%A1%2C%20Gabriel!%20Gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20de%20fisioterapia." target="_blank" rel="noopener">Falar pelo WhatsApp <span>→</span></a><a class="secondary-link" href="tel:+5565993046131">☎ &nbsp; (65) 99304-6131</a></section>
