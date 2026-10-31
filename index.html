@@ -35,10 +35,16 @@ header{height:82px;display:flex;align-items:center;justify-content:space-between
 .credential b{color:#00345f}
 @media(max-width:760px){.hero{background:#00345f;padding:38px 7%}}
 
+
+/* Logo oficial no cabeçalho, no lugar do nome em texto */
+header .wordmark{display:flex;align-items:center;width:205px;height:64px;overflow:hidden}
+header .wordmark img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+@media(max-width:440px){header .wordmark{width:155px;height:56px}}
+
 </style>
 </head>
 <body>
-<header class="wrap"><a class="wordmark" href="#inicio">Gabriel de Oliveira</a><nav class="nav"><a href="#atuacao">Atuação</a><a href="#sobre">O profissional</a><a href="#contato">Contato</a><a class="pill" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agendar atendimento <span>↗</span></a></nav></header>
+<header class="wrap"><a class="wordmark" href="#inicio" aria-label="Gabriel de Oliveira — Fisioterapia"><img src="assets/logo-gabriel.jpg" alt="Gabriel de Oliveira Fisioterapia"></a><nav class="nav"><a href="#atuacao">Atuação</a><a href="#sobre">O profissional</a><a href="#contato">Contato</a><a class="pill" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agendar atendimento <span>↗</span></a></nav></header>
 <main>
 <section class="wrap hero" id="inicio">
 <div class="hero-copy">
