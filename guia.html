@@ -56,7 +56,7 @@ const camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(0,1.05
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;
 scene.add(new THREE.HemisphereLight(0xffffff,0x9eb4c8,2));const light=new THREE.DirectionalLight(0xffffff,2.2);light.position.set(4,7,6);scene.add(light);
 const model=new THREE.Group();scene.add(model);const base=new THREE.MeshStandardMaterial({color:0xc8d9e6,roughness:.65}),detail=new THREE.MeshStandardMaterial({color:0x9eb8ca,roughness:.6}),active=new THREE.MeshStandardMaterial({color:0x005a9c,emissive:0x003d7a,emissiveIntensity:.25});
-const regions={};function add(region,geo,pos,scale,mat=base){const m=new THREE.Mesh(geo,mat);m.position.set(...pos);if(scale)m.scale.set(...scale);m.userData.region=region;model.add(m);(regions[region]??=[]).push(m);return m}
+const regions={};function add(region,geo,pos,scale,mat=base){const m=new THREE.Mesh(geo,mat);m.position.set(...pos);if(scale)m.scale.set(...scale);m.userData.region=region;m.userData.originalMaterial=mat;model.add(m);(regions[region]??=[]).push(m);return m}
 function ball(r,p,s,mat){return add(r,new THREE.SphereGeometry(1,28,20),p,s,mat)}
 function bar(r,a,b,ra,rb){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A),m=add(r,new THREE.CylinderGeometry(rb,ra,d.length(),24),A.clone().add(B).multiplyScalar(.5).toArray());m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());ball(r,a,[ra,ra,ra]);ball(r,b,[rb,rb,rb])}
 ball('cabeca',[0,2.62,0],[.39,.49,.34]);ball('coluna',[0,2.08,0],[.16,.25,.16]);ball('coluna',[0,1.28,0],[.48,.72,.27]);ball('musculos',[0,1.62,.20],[.37,.36,.12],detail);ball('quadril',[0,.58,0],[.49,.34,.29]);
@@ -73,7 +73,7 @@ canvas.addEventListener('pointerdown',e=>{drag=true;moved=false;lastX=e.clientX;
 canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;if(Math.abs(dx)+Math.abs(dy)>2)moved=true;ry+=dx*.009;rx=Math.max(-.35,Math.min(.35,rx+dy*.006));lastX=e.clientX;lastY=e.clientY});
 canvas.addEventListener('pointerup',e=>{drag=false;if(moved)return;const b=canvas.getBoundingClientRect();pt.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height*2-1));ray.setFromCamera(pt,camera);const hit=ray.intersectObjects(model.children).find(x=>x.object.userData.region);if(hit)window.dispatchEvent(new CustomEvent('body-region-selected',{detail:hit.object.userData.region}))});
 canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(5.4,Math.min(11,zoom+e.deltaY*.006));camera.position.z=zoom},{passive:false});
-window.addEventListener('body-region-selected',e=>Object.entries(regions).forEach(([r,ms])=>ms.forEach(m=>{if(m.material===base||m.material===detail)m.material=r===e.detail?active:base})));
+window.addEventListener('body-region-selected',e=>Object.entries(regions).forEach(([r,ms])=>ms.forEach(m=>{m.material=r===e.detail?active:m.userData.originalMaterial})));
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===b));ry=b.dataset.view==='back'?Math.PI:0});
 document.getElementById('zoomIn').onclick=()=>{zoom=Math.max(5.4,zoom-.7);camera.position.z=zoom};document.getElementById('zoomOut').onclick=()=>{zoom=Math.min(11,zoom+.7);camera.position.z=zoom};document.getElementById('reset3d').onclick=()=>{ry=0;rx=0;zoom=8.4;camera.position.set(0,1.05,zoom)};
 </script></body></html>
