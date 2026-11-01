@@ -201,7 +201,7 @@ try{
  const rim=new THREE.PointLight(0x49b8f2,35,16);rim.position.set(-4,5,-3);scene.add(rim);
  raycaster=new THREE.Raycaster();pointer=new THREE.Vector2();
  const loader=new GLTFLoader();
- loader.load('assets/modelo-anatomico.glb',gltf=>{
+ loader.load('assets/gabriel_fisioterapia_modelo_anatomico_3d%20(1).glb',gltf=>{
    model=gltf.scene;model.scale.setScalar(.91);model.position.y=-.05;
    model.traverse(obj=>{
     if(obj.isMesh){obj.material=obj.material.clone();obj.material.color.lerp(new THREE.Color('#79bfe3'),.25);obj.material.metalness=.16;obj.material.roughness=.38;obj.material.emissive=new THREE.Color('#07385b');obj.material.emissiveIntensity=.08;
