@@ -70,7 +70,7 @@ footer{position:relative;z-index:1;padding:16px clamp(18px,4vw,64px);display:fle
 <circle cx="150" cy="55" r="34"/><path d="M124 96 Q95 104 89 145 L72 230 Q70 247 84 250 Q96 253 101 235 L119 165 L122 260 L107 390 Q105 410 123 413 L127 530 Q127 555 143 555 Q158 555 158 531 L164 413 L177 531 Q179 555 194 555 Q210 554 207 529 L196 410 Q214 408 211 390 L178 260 L181 165 L201 235 Q207 253 220 249 Q233 245 227 228 L210 145 Q203 105 176 96Z"/>
 </g>
 <g id="hotspots">
-<ellipse class="hot" data-region="coluna" cx="150" cy="190" rx="17" ry="92"/><circle class="hot" data-region="ombro" cx="103" cy="137" r="22"/><circle class="hot" data-region="ombro" cx="197" cy="137" r="22/><circle class="hot" data-region="cotovelo" cx="83" cy="238" r="17"/><circle class="hot" data-region="cotovelo" cx="217" cy="238" r="17"/><circle class="hot" data-region="quadril" cx="125" cy="365" r="24"/><circle class="hot" data-region="quadril" cx="175" cy="365" r="24"/><circle class="hot" data-region="joelho" cx="132" cy="442" r="20"/><circle class="hot" data-region="joelho" cx="168" cy="442" r="20"/><circle class="hot" data-region="tornozelo" cx="130" cy="535" r="15"/><circle class="hot" data-region="tornozelo" cx="190" cy="535" r="15"/>
+<ellipse class="hot" data-region="coluna" cx="150" cy="190" rx="17" ry="92"/><circle class="hot" data-region="ombro" cx="103" cy="137" r="22"/><circle class="hot" data-region="ombro" cx="197" cy="137" r="22"/><circle class="hot" data-region="cotovelo" cx="83" cy="238" r="17"/><circle class="hot" data-region="cotovelo" cx="217" cy="238" r="17"/><circle class="hot" data-region="quadril" cx="125" cy="365" r="24"/><circle class="hot" data-region="quadril" cx="175" cy="365" r="24"/><circle class="hot" data-region="joelho" cx="132" cy="442" r="20"/><circle class="hot" data-region="joelho" cx="168" cy="442" r="20"/><circle class="hot" data-region="tornozelo" cx="130" cy="535" r="15"/><circle class="hot" data-region="tornozelo" cx="190" cy="535" r="15"/>
 </g></svg></div>
 <div class="model-tools"><button class="tool" id="reset" title="Voltar à posição inicial" aria-label="Voltar à posição inicial">⌂</button><button class="tool" id="front" title="Vista frontal" aria-label="Vista frontal">◉</button><button class="tool" id="back" title="Vista posterior" aria-label="Vista posterior">↻</button><button class="tool" id="zoomIn" title="Aproximar" aria-label="Aproximar">＋</button><button class="tool" id="zoomOut" title="Afastar" aria-label="Afastar">－</button></div>
 <div class="stage-label" id="modelStatus">Modelo anatômico • carregamento 3D</div>
@@ -140,9 +140,57 @@ input.addEventListener('input',e=>search(e.target.value));document.addEventListe
 renderPanel();
 const canvas=$('modelCanvas'),stage=canvas.parentElement;
 let renderer,camera,controls,raycaster,pointer;
+function buildProceduralModel(scene){
+ const group=new THREE.Group();
+ const material=new THREE.MeshStandardMaterial({color:'#8fc7e2',metalness:.12,roughness:.42,emissive:'#07385b',emissiveIntensity:.08});
+ const jointMaterial=new THREE.MeshStandardMaterial({color:'#d8eaf2',metalness:.08,roughness:.5});
+ function part(name,region,a,b,radius,mat=material){
+  const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),delta=end.clone().sub(start);
+  const length=delta.length(),mesh=new THREE.Mesh(new THREE.CapsuleGeometry(radius,Math.max(.01,length-radius*2),5,10),mat.clone());
+  mesh.position.copy(start).add(end).multiplyScalar(.5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());
+  mesh.name=name;mesh.userData.region=region;mesh.userData.originalEmissive=mesh.material.emissive.clone();mesh.userData.originalIntensity=mesh.material.emissiveIntensity;
+  group.add(mesh);(meshesByRegion[region]??=[]).push(mesh);return mesh;
+ }
+ function joint(name,region,pos,r){
+  const mesh=new THREE.Mesh(new THREE.SphereGeometry(r,18,14),jointMaterial.clone());
+  mesh.position.set(...pos);mesh.name=name;mesh.userData.region=region;mesh.userData.originalEmissive=mesh.material.emissive.clone();mesh.userData.originalIntensity=mesh.material.emissiveIntensity;
+  group.add(mesh);(meshesByRegion[region]??=[]).push(mesh);return mesh;
+ }
+ // Tronco, cabeça e cintura pélvica
+ part('Tórax','postura',[0,4.95,0],[0,6.12,0],.48);
+ part('Abdômen','postura',[0,4.55,0],[0,5.15,0],.37);
+ part('Pescoço','postura',[0,6.05,0],[0,6.55,0],.17);
+ joint('Cabeça - volume anatômico','postura',[0,6.98,0],.39);
+ part('Pelve','quadril',[0,4.0,0],[0,4.58,0],.43);
+ // Braços bilaterais
+ for(const side of [-1,1]){
+  const x=side;
+  part('Ombro '+side,'ombro',[x*.34,6.0,0],[x*.76,5.95,0],.22);
+  part('Braço superior '+side,'musculos',[x*.72,5.95,0],[x*.98,4.85,0],.16);
+  joint('Cotovelo '+side,'cotovelo',[x*.98,4.82,0],.17);
+  part('Antebraço '+side,'cotovelo',[x*.98,4.78,0],[x*1.13,3.78,0],.125);
+  part('Mão '+side,'cotovelo',[x*1.13,3.82,0],[x*1.16,3.48,.02],.12);
+  // Coxas e pernas
+  part('Coxa '+side,'quadril',[x*.23,4.0,0],[x*.27,2.35,0],.23);
+  joint('Joelho '+side,'joelho',[x*.27,2.25,0],.19);
+  part('Perna inferior '+side,'tornozelo',[x*.27,2.18,0],[x*.29,.55,0],.145);
+  joint('Tornozelo '+side,'tornozelo',[x*.29,.48,0],.12);
+  part('Pé '+side,'tornozelo',[x*.29,.38,0],[x*.29,.2,.34],.13);
+ }
+ // Coluna central destacada, sobreposta ao tronco
+ for(let i=0;i<12;i++){
+  const y=5.9-i*.145;
+  joint('Vértebra '+String(i+1).padStart(2,'0'),'coluna',[0,y,.31],.095);
+ }
+ scene.add(group);model=group;modelReady=true;
+ $('loading').classList.add('hidden');$('fallback').classList.remove('show');
+ $('modelStatus').textContent='Modelo 3D interativo • arraste para girar';
+ highlightMeshes();
+}
 function failModel(message){
- $('loading').classList.add('hidden');$('fallback').classList.add('show');$('modelStatus').textContent='Visualização anatômica alternativa';
- if(!modelReady) console.warn(message);
+ console.warn(message);
+ if(!modelReady && typeof scene!=='undefined') buildProceduralModel(scene);
 }
 try{
  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(stage.clientWidth,stage.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -164,8 +212,8 @@ try{
      (meshesByRegion[r]??=[]).push(obj);
     }
    });
-   scene.add(model);modelReady=true;$('loading').classList.add('hidden');$('modelStatus').textContent='Modelo 3D • arraste para girar';highlightMeshes();
- },undefined,err=>failModel('Não foi possível carregar assets/modelo-anatomico.glb: '+err));
+   scene.add(model);modelReady=true;$('loading').classList.add('hidden');$('fallback').classList.remove('show');$('modelStatus').textContent='Modelo anatômico 3D • arraste para girar';highlightMeshes();
+ },undefined,err=>{ $('modelStatus').textContent='Modelo 3D interativo'; failModel('Arquivo GLB indisponível; ativando modelo anatômico 3D alternativo: '+err); });
  function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
  const resize=()=>{const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};new ResizeObserver(resize).observe(stage);
  canvas.addEventListener('click',e=>{if(!model)return;const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObject(model,true);if(hits.length){const n=(hits[0].object.name||'').toLowerCase();let r='coluna';if(n.includes('ombro'))r='ombro';else if(n.includes('cotovelo')||n.includes('antebraço')||n.includes('mão'))r='cotovelo';else if(n.includes('joelho'))r='joelho';else if(n.includes('pelve')||n.includes('coxa'))r='quadril';else if(n.includes('tornozelo')||n.includes('pé')||n.includes('perna inferior'))r='tornozelo';else if(n.includes('braço'))r='musculos';chooseRegion(r)}});
