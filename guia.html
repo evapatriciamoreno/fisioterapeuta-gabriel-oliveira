@@ -139,7 +139,7 @@ function search(q){
 input.addEventListener('input',e=>search(e.target.value));document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))results.classList.remove('show')});
 renderPanel();
 const canvas=$('modelCanvas'),stage=canvas.parentElement;
-let renderer,camera,controls,raycaster,pointer;
+let renderer,camera,controls,raycaster,pointer,scene;
 function buildProceduralModel(scene){
  const group=new THREE.Group();
  const material=new THREE.MeshStandardMaterial({color:'#8fc7e2',metalness:.12,roughness:.42,emissive:'#07385b',emissiveIntensity:.08});
@@ -194,7 +194,7 @@ function failModel(message){
 }
 try{
  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(stage.clientWidth,stage.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;
- const scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(34,stage.clientWidth/stage.clientHeight,.1,100);camera.position.set(0,4.1,12);
+ scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(34,stage.clientWidth/stage.clientHeight,.1,100);camera.position.set(0,4.1,12);
  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=7;controls.maxDistance=19;controls.target.set(0,3.8,0);
  scene.add(new THREE.HemisphereLight(0xd9f4ff,0x123b58,2.1));
  const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(4,8,7);scene.add(key);
@@ -216,7 +216,7 @@ try{
  },undefined,err=>{ $('modelStatus').textContent='Modelo 3D interativo'; failModel('Arquivo GLB indisponível; ativando modelo anatômico 3D alternativo: '+err); });
  function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
  const resize=()=>{const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};new ResizeObserver(resize).observe(stage);
- canvas.addEventListener('click',e=>{if(!model)return;const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObject(model,true);if(hits.length){const n=(hits[0].object.name||'').toLowerCase();let r='coluna';if(n.includes('ombro'))r='ombro';else if(n.includes('cotovelo')||n.includes('antebraço')||n.includes('mão'))r='cotovelo';else if(n.includes('joelho'))r='joelho';else if(n.includes('pelve')||n.includes('coxa'))r='quadril';else if(n.includes('tornozelo')||n.includes('pé')||n.includes('perna inferior'))r='tornozelo';else if(n.includes('braço'))r='musculos';chooseRegion(r)}});
+ canvas.addEventListener('click',e=>{if(!model)return;const rect=canvas.getBoundingClientRect();pointer.x=((e.clientX-rect.left)/rect.width)*2-1;pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObject(model,true);if(hits.length){const n=(hits[0].object.name||'').toLowerCase();let r=hits[0].object.userData.region||'coluna';if(n.includes('ombro'))r='ombro';else if(n.includes('cotovelo')||n.includes('antebraço')||n.includes('mão'))r='cotovelo';else if(n.includes('joelho'))r='joelho';else if(n.includes('pelve')||n.includes('coxa'))r='quadril';else if(n.includes('tornozelo')||n.includes('pé')||n.includes('perna inferior'))r='tornozelo';else if(n.includes('braço'))r='musculos';chooseRegion(r)}});
  $('reset').onclick=()=>{controls.reset();camera.position.set(0,4.1,12);controls.target.set(0,3.8,0);controls.update()};
  $('front').onclick=()=>{camera.position.set(0,4,12);controls.target.set(0,3.8,0);controls.update()};
  $('back').onclick=()=>{camera.position.set(0,4,-12);controls.target.set(0,3.8,0);controls.update()};
