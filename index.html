@@ -61,38 +61,64 @@ nav a,.book,.primary,.quick a,.specialty,.service-card{transition:transform .35s
 @keyframes hero-copy-enter{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes hero-image-enter{from{opacity:0;transform:translate(24px,18px) scale(.985)}to{opacity:1;transform:translate(0,0) scale(1)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.js-motion .motion-in{opacity:1;transform:none}}
+
+/* Primeira seção centralizada — composição inicial */
+body{background:#e7f0f3}
+.site{margin-top:24px}
+header nav{display:none}
+.hero.hero-centered{min-height:0;padding:38px 28px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;background:#EAF3F6;overflow:hidden}
+.hero-centered:before{width:330px;height:330px;right:calc(50% - 165px);top:170px;background:#c9e0e7}
+.hero-intro{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.hero-intro .eyebrow{margin-bottom:12px}
+.hero-intro h1{font-size:clamp(32px,4.2vw,50px);margin-bottom:10px}
+.hero-intro>p:not(.eyebrow){font-size:14px;max-width:600px;margin:0 auto 4px}
+.hero-person-centered{position:relative;z-index:1;display:block;width:min(360px,65vw);height:300px;object-fit:contain;object-position:center bottom;margin:0 auto -2px}
+.differentials{position:relative;z-index:3;width:min(100%,1000px);display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:1px solid #dce7eb;border-radius:16px;box-shadow:0 14px 34px #15364b12;padding:22px 12px}
+.differential{display:flex;flex-direction:column;align-items:center;padding:8px 15px;border-right:1px solid var(--line)}
+.differential:last-child{border-right:0}
+.diff-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#eaf3f6;color:var(--blue);font-size:22px;margin-bottom:10px}
+.differential strong{font:700 12px Manrope;color:var(--blue);margin-bottom:6px}
+.differential small{font-size:10px;line-height:1.5;color:var(--gray)}
+.contact-main{position:relative;z-index:3;margin-top:22px;padding:15px 28px}
+.next-section-empty{min-height:260px;background:#fff}
+@media(max-width:700px){
+ .site{width:100%;margin:0}
+ .hero.hero-centered{padding:34px 18px 38px}
+ .hero-centered:before{width:250px;height:250px;right:calc(50% - 125px);top:180px}
+ .hero-person-centered{height:245px;width:min(330px,80vw)}
+ .differentials{grid-template-columns:repeat(2,1fr);padding:10px}
+ .differential{padding:15px 10px;border-right:0;border-bottom:1px solid var(--line)}
+ .differential:nth-child(odd){border-right:1px solid var(--line)}
+ .differential:nth-last-child(-n+2){border-bottom:0}
+ .differential strong{font-size:11px}
+ .differential small{font-size:9px}
+ .next-section-empty{min-height:200px}
+}
+
 </style>
 </head>
 <body><div class="site">
 <header><a class="brand" href="#inicio"><img src="assets/logo.webp" alt="Gabriel de Oliveira Fisioterapia" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="brand-fallback" style="display:none">Gabriel de Oliveira<small>FISIOTERAPIA</small></span></a>
-<nav aria-label="Menu principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a href="guia.html">Guia Prático de Saúde</a></nav><a class="book" href="guia.html">Guia Prático de Saúde</a></header>
+<nav aria-label="Menu principal"></nav><a class="book" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Contato</a></header>
 <main>
-<section class="hero" id="inicio"><div class="hero-copy"><p class="eyebrow">Fisioterapia • Atendimento domiciliar</p><h1>Movimento e cuidado para uma <span>vida mais saudável</span></h1><p>Reabilitação, mobilidade e atenção individualizada para recuperar movimentos, fortalecer a autonomia e viver com mais segurança no conforto da sua casa.</p><a class="primary" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Fale com o fisioterapeuta <b>➜</b></a>
-<div class="numbers"><div class="number"><strong>100%</strong><span>Cuidado individual</span></div><div class="number"><strong>Em casa</strong><span>Atendimento domiciliar</span></div><div class="number"><strong>Funcional</strong><span>Foco na autonomia</span></div><div class="number"><strong>Humano</strong><span>Atenção e acolhimento</span></div></div></div>
-<model-viewer class="hero-model" src="assets/gabriel_fisioterapia_modelo_anatomico_3d%20(1).glb" poster="assets/banner.webp" alt="Modelo anatômico 3D interativo para explorar o corpo humano" camera-controls auto-rotate auto-rotate-delay="1200" rotation-per-second="18deg" shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg 2.7m" min-camera-orbit="auto 20deg auto" max-camera-orbit="auto 150deg auto" interaction-prompt="auto" ar aria-label="Modelo anatômico 3D interativo"></model-viewer><div class="online"><i></i> Explore o modelo anatômico 3D</div></section>
-<div class="quick"><a href="#servicos">Reabilitação</a><a href="#servicos">Fisioterapia para idosos</a><a href="#servicos">Atendimento domiciliar</a><a href="#sobre">Conheça o profissional</a><a href="https://wa.me/5565993046131" target="_blank" rel="noopener">WhatsApp ↗</a></div>
-<section class="section"><div class="section-heading"><h2>Áreas de cuidado</h2><p>Conheça algumas das áreas e necessidades atendidas pela fisioterapia.</p></div>
-<div class="specialties">
-<div class="specialty"><img src="assets/coluna.webp" alt="Ilustração de coluna vertebral"><span>Coluna</span></div>
-<div class="specialty"><img src="assets/joelho.webp" alt="Ilustração de articulação do joelho"><span>Joelho</span></div>
-<div class="specialty"><img src="assets/acessibilidade.webp" alt="Ilustração de acessibilidade"><span>Mobilidade</span></div>
-<div class="specialty"><img src="assets/alongamento.webp" alt="Ilustração de alongamento"><span>Alongamento</span></div>
-<div class="specialty"><img src="assets/forca.webp" alt="Ilustração de fortalecimento"><span>Fortalecimento</span></div>
-<div class="specialty"><img src="assets/coracao.webp" alt="Ilustração de cuidado e saúde"><span>Qualidade de vida</span></div>
-</div></section>
-<section class="section services" id="servicos"><div class="section-heading"><p class="eyebrow" style="color:#eaf5f8">Cuidado especializado</p><h2>Serviços de fisioterapia para você e sua família</h2><p>Atendimento individualizado para diferentes fases da vida e necessidades funcionais.</p></div>
-<div class="service-layout">
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Reabilitação pós-acidente</h3><p>Acompanhamento para recuperar movimentos e capacidades funcionais após acidentes.</p></article>
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Fisioterapia para idosos</h3><p>Mobilidade, equilíbrio, força e autonomia para as atividades do dia a dia.</p></article>
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Atendimento domiciliar</h3><p>Cuidado no conforto de casa, respeitando a rotina e os objetivos do paciente.</p></article>
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Prevenção de quedas</h3><p>Exercícios e orientações para favorecer segurança e confiança ao se movimentar.</p></article>
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Mobilidade e funcionalidade</h3><p>Trabalho direcionado à melhora dos movimentos e das atividades cotidianas.</p></article>
-<article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Recuperação e acompanhamento</h3><p>Acompanhamento da evolução conforme avaliação e necessidade individual.</p></article>
-</div><img class="service-person" src="assets/assinatura.webp" alt="Identidade visual de Gabriel de Oliveira Fisioterapia"></section>
-<section class="section guide" id="guia"><div><p class="eyebrow">Conteúdo educativo</p><h2>Guia Prático de Saúde</h2><p>Um espaço para conhecer melhor o corpo humano, explorar temas relacionados à mobilidade e compreender como a fisioterapia pode contribuir para a saúde e a qualidade de vida.</p><a class="primary" href="guia.html">Acessar guia prático ↗</a></div><div class="guide-art"><img src="assets/fisioterapia.webp" alt="Ilustração de fisioterapia"></div></section>
-<section class="section about" id="sobre"><img src="assets/logo.webp" alt="Logo Gabriel de Oliveira Fisioterapia"><div><p class="eyebrow">Conheça o profissional</p><h2>Gabriel de Oliveira</h2><p>Fisioterapeuta com atuação em atendimento domiciliar, reabilitação e cuidado individualizado. O acompanhamento considera as necessidades, os objetivos e o ritmo de cada paciente.</p><p><strong>CREFITO-9 437209-F</strong></p></div></section>
+<section class="hero hero-centered" id="inicio">
+  <div class="hero-intro">
+    <p class="eyebrow">Fisioterapia • Cuiabá – MT</p>
+    <h1>Mais movimento começa com <span>cuidado.</span></h1>
+    <p>Fisioterapia com atenção individualizada, no conforto e na segurança da sua casa.</p>
+  </div>
+  <img class="hero-person-centered" src="assets/banner.webp" alt="Profissional de fisioterapia em atendimento">
+  <div class="differentials" aria-label="Diferenciais do atendimento">
+    <div class="differential"><span class="diff-icon">↗</span><strong>Recuperação pós-acidente</strong><small>Apoio na retomada dos movimentos e da funcionalidade.</small></div>
+    <div class="differential"><span class="diff-icon">⌂</span><strong>Atendimento domiciliar</strong><small>Cuidado individualizado no conforto de casa.</small></div>
+    <div class="differential"><span class="diff-icon">♡</span><strong>Fisioterapia para idosos</strong><small>Mais mobilidade, equilíbrio e autonomia.</small></div>
+    <div class="differential"><span class="diff-icon">＋</span><strong>Prevenção de quedas</strong><small>Orientação e exercícios para mais segurança no dia a dia.</small></div>
+  </div>
+  <a class="primary contact-main" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Entre em contato <b>➜</b></a>
+</section>
+<section class="next-section-empty" aria-label="Próxima seção"></section>
 </main><footer><span>© 2026 Gabriel de Oliveira • Fisioterapia</span><span>CREFITO-9 437209-F</span><span>Atendimento domiciliar</span></footer></div>
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 <script>
 (function(){
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
