@@ -95,6 +95,38 @@ header nav{display:none}
  .next-section-empty{min-height:200px}
 }
 
+
+/* Acessibilidade: tipografia ampliada para leitura confortável */
+body{font-size:18px}
+header .book{font-size:16px;padding:15px 26px;min-height:48px}
+.hero-intro .eyebrow{font-size:14px;letter-spacing:1.8px}
+.hero-intro h1{font-size:clamp(38px,4.8vw,58px);line-height:1.16}
+.hero-intro>p:not(.eyebrow){font-size:18px;line-height:1.7}
+.differentials{padding:25px 14px}
+.differential{padding:10px 17px}
+.diff-icon{width:46px;height:46px;font-size:25px}
+.differential strong{font-size:16px;line-height:1.35}
+.differential small{font-size:14px;line-height:1.6}
+.contact-main{font-size:17px;padding:17px 32px;min-height:54px}
+footer{font-size:13px;line-height:1.6}
+@media(max-width:700px){
+ .hero-intro .eyebrow{font-size:13px}
+ .hero-intro h1{font-size:clamp(34px,8vw,44px);line-height:1.18}
+ .hero-intro>p:not(.eyebrow){font-size:17px;line-height:1.65}
+ .differentials{padding:12px 8px;gap:0}
+ .differential{padding:17px 10px}
+ .diff-icon{width:42px;height:42px;font-size:24px}
+ .differential strong{font-size:15px;line-height:1.35}
+ .differential small{font-size:14px;line-height:1.55}
+ .contact-main{font-size:17px;padding:17px 28px;min-height:54px}
+ footer{font-size:13px}
+}
+@media(max-width:380px){
+ .differential{padding:15px 7px}
+ .differential strong{font-size:14px}
+ .differential small{font-size:13px}
+}
+
 </style>
 </head>
 <body><div class="site">
