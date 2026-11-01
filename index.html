@@ -21,7 +21,7 @@ nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)}nav a{color:#fff;
 h1,h2,h3{font-family:Manrope,sans-serif}h1{font-size:clamp(34px,4vw,54px);line-height:1.1;letter-spacing:-1.8px;color:var(--ink);margin:0 0 17px}h1 span{color:var(--blue)}
 .hero-copy>p:not(.eyebrow){font-size:13px;line-height:1.65;color:var(--gray);max-width:440px;margin:0 0 23px}
 .primary{display:inline-flex;align-items:center;gap:12px;background:#78AABD;color:#fff;text-decoration:none;padding:13px 20px;border-radius:28px;font-size:12px;font-weight:700}
-.hero-person{position:absolute;z-index:1;right:4%;bottom:0;width:44%;height:97%;object-fit:contain;object-position:center bottom}
+.hero-model{position:absolute;z-index:1;right:3%;bottom:0;width:48%;height:98%;background:transparent;--poster-color:transparent;outline:none}
 .online{position:absolute;z-index:3;right:5%;top:15%;background:#fff;padding:10px 14px;border-radius:24px;font-size:10px;font-weight:700;box-shadow:0 5px 18px #183d5315}.online i{display:inline-block;width:7px;height:7px;background:#72c59a;border-radius:50%;margin-right:6px}
 .numbers{display:grid;grid-template-columns:repeat(4,1fr);max-width:690px;position:relative;z-index:3;margin-top:26px;background:#fff;border-radius:0 18px 0 0;padding:14px 0 0}.number{text-align:center;border-right:1px solid var(--line);padding:0 9px}.number:last-child{border:0}.number strong{display:block;font:800 21px Manrope;color:var(--blue)}.number span{font-size:10px;color:var(--gray)}
 .quick{margin:0 clamp(20px,3vw,42px);background:#78AABD;padding:14px 18px;border-radius:12px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:10px;align-items:center}
@@ -33,8 +33,8 @@ h1,h2,h3{font-family:Manrope,sans-serif}h1{font-size:clamp(34px,4vw,54px);line-h
 .guide{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;background:#fff}.guide h2{font-size:27px;color:var(--blue);margin:0 0 10px}.guide p{font-size:12px;line-height:1.7;color:var(--gray);max-width:560px}.guide-art{background:var(--pale);padding:16px;border-radius:12px}.guide-art img{width:100%;max-height:180px;object-fit:contain}
 .about{background:#F6F9FA;display:flex;align-items:center;gap:28px}.about img{width:170px;max-height:140px;object-fit:contain}.about h2{font-size:24px;color:var(--blue);margin:0 0 8px}.about p{font-size:12px;line-height:1.7;color:var(--gray);max-width:680px}
 footer{background:#003D7A;color:#e5f0f5;padding:20px clamp(24px,4vw,58px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:10px}
-@media(max-width:800px){.site{width:100%;margin:0}header{height:auto;min-height:72px;flex-wrap:wrap;padding:12px 20px}nav{order:3;width:100%;justify-content:space-between;gap:9px}nav a{font-size:10px}.brand img{width:155px}.hero{min-height:540px;padding:45px 22px 20px;align-items:flex-start}.hero-copy{width:100%;max-width:500px}.hero-person{width:65%;height:55%;right:0}.hero:before{width:260px;height:260px;right:4%;top:auto;bottom:30px}.online{top:auto;bottom:44%;right:4%}.numbers{width:100%;margin-top:22px}.number strong{font-size:17px}.number span{font-size:9px}.quick{grid-template-columns:repeat(2,1fr);margin:0 14px}.quick a:last-child{grid-column:span 2}.specialties{grid-template-columns:repeat(3,1fr)}.service-layout{grid-template-columns:repeat(2,1fr);max-width:100%;padding-bottom:190px}.service-person{width:48%;height:42%;right:4%}.guide{grid-template-columns:1fr}.guide-art{max-width:400px}.section{padding:42px 22px}}
-@media(max-width:430px){.hero{min-height:570px}h1{font-size:36px}.numbers{grid-template-columns:repeat(2,1fr);row-gap:12px}.number:nth-child(2){border:0}.specialties{gap:10px}.specialty span{font-size:9px}.service-layout{gap:10px}.service-card{padding:13px}.about{align-items:flex-start;flex-direction:column}.about img{width:135px}}
+@media(max-width:800px){.hero-model{width:68%;height:56%;right:0;bottom:0}.site{width:100%;margin:0}header{height:auto;min-height:72px;flex-wrap:wrap;padding:12px 20px}nav{order:3;width:100%;justify-content:space-between;gap:9px}nav a{font-size:10px}.brand img{width:155px}.hero{min-height:540px;padding:45px 22px 20px;align-items:flex-start}.hero-copy{width:100%;max-width:500px}.hero-person{width:65%;height:55%;right:0}.hero:before{width:260px;height:260px;right:4%;top:auto;bottom:30px}.online{top:auto;bottom:44%;right:4%}.numbers{width:100%;margin-top:22px}.number strong{font-size:17px}.number span{font-size:9px}.quick{grid-template-columns:repeat(2,1fr);margin:0 14px}.quick a:last-child{grid-column:span 2}.specialties{grid-template-columns:repeat(3,1fr)}.service-layout{grid-template-columns:repeat(2,1fr);max-width:100%;padding-bottom:190px}.service-person{width:48%;height:42%;right:4%}.guide{grid-template-columns:1fr}.guide-art{max-width:400px}.section{padding:42px 22px}}
+@media(max-width:430px){.hero-model{width:78%;height:48%;right:-3%;bottom:0}.hero{min-height:570px}h1{font-size:36px}.numbers{grid-template-columns:repeat(2,1fr);row-gap:12px}.number:nth-child(2){border:0}.specialties{gap:10px}.specialty span{font-size:9px}.service-layout{gap:10px}.service-card{padding:13px}.about{align-items:flex-start;flex-direction:column}.about img{width:135px}}
 
 /* Movimento e interação: entradas por rolagem + microinterações */
 html{scroll-padding-top:24px}
@@ -65,11 +65,11 @@ nav a,.book,.primary,.quick a,.specialty,.service-card{transition:transform .35s
 </head>
 <body><div class="site">
 <header><a class="brand" href="#inicio"><img src="assets/logo.webp" alt="Gabriel de Oliveira Fisioterapia" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="brand-fallback" style="display:none">Gabriel de Oliveira<small>FISIOTERAPIA</small></span></a>
-<nav aria-label="Menu principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a href="guia.html">Guia interativo</a></nav><a class="book" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Agendar atendimento</a></header>
+<nav aria-label="Menu principal"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a href="guia.html">Guia Prático de Saúde</a></nav><a class="book" href="guia.html">Guia Prático de Saúde</a></header>
 <main>
 <section class="hero" id="inicio"><div class="hero-copy"><p class="eyebrow">Fisioterapia • Atendimento domiciliar</p><h1>Movimento e cuidado para uma <span>vida mais saudável</span></h1><p>Reabilitação, mobilidade e atenção individualizada para recuperar movimentos, fortalecer a autonomia e viver com mais segurança no conforto da sua casa.</p><a class="primary" href="https://wa.me/5565993046131" target="_blank" rel="noopener">Fale com o fisioterapeuta <b>➜</b></a>
 <div class="numbers"><div class="number"><strong>100%</strong><span>Cuidado individual</span></div><div class="number"><strong>Em casa</strong><span>Atendimento domiciliar</span></div><div class="number"><strong>Funcional</strong><span>Foco na autonomia</span></div><div class="number"><strong>Humano</strong><span>Atenção e acolhimento</span></div></div></div>
-<img class="hero-person" src="assets/banner.webp" alt="Gabriel de Oliveira, fisioterapeuta"><div class="online"><i></i> Atendimento com hora marcada</div></section>
+<model-viewer class="hero-model" src="assets/gabriel_fisioterapia_modelo_anatomico_3d%20(1).glb" poster="assets/banner.webp" alt="Modelo anatômico 3D interativo para explorar o corpo humano" camera-controls auto-rotate auto-rotate-delay="1200" rotation-per-second="18deg" shadow-intensity="1" exposure="1" camera-orbit="0deg 75deg 2.7m" min-camera-orbit="auto 20deg auto" max-camera-orbit="auto 150deg auto" interaction-prompt="auto" ar aria-label="Modelo anatômico 3D interativo"></model-viewer><div class="online"><i></i> Explore o modelo anatômico 3D</div></section>
 <div class="quick"><a href="#servicos">Reabilitação</a><a href="#servicos">Fisioterapia para idosos</a><a href="#servicos">Atendimento domiciliar</a><a href="#sobre">Conheça o profissional</a><a href="https://wa.me/5565993046131" target="_blank" rel="noopener">WhatsApp ↗</a></div>
 <section class="section"><div class="section-heading"><h2>Áreas de cuidado</h2><p>Conheça algumas das áreas e necessidades atendidas pela fisioterapia.</p></div>
 <div class="specialties">
@@ -89,9 +89,10 @@ nav a,.book,.primary,.quick a,.specialty,.service-card{transition:transform .35s
 <article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Mobilidade e funcionalidade</h3><p>Trabalho direcionado à melhora dos movimentos e das atividades cotidianas.</p></article>
 <article class="service-card"><img src="assets/isotipo.webp" alt=""><h3>Recuperação e acompanhamento</h3><p>Acompanhamento da evolução conforme avaliação e necessidade individual.</p></article>
 </div><img class="service-person" src="assets/assinatura.webp" alt="Identidade visual de Gabriel de Oliveira Fisioterapia"></section>
-<section class="section guide" id="guia"><div><p class="eyebrow">Conteúdo educativo</p><h2>Explore o Guia Interativo</h2><p>Um espaço para conhecer melhor o corpo humano, explorar temas relacionados à mobilidade e compreender como a fisioterapia pode contribuir para a saúde e a qualidade de vida.</p><a class="primary" href="guia.html">Acessar guia interativo ↗</a></div><div class="guide-art"><img src="assets/fisioterapia.webp" alt="Ilustração de fisioterapia"></div></section>
+<section class="section guide" id="guia"><div><p class="eyebrow">Conteúdo educativo</p><h2>Guia Prático de Saúde</h2><p>Um espaço para conhecer melhor o corpo humano, explorar temas relacionados à mobilidade e compreender como a fisioterapia pode contribuir para a saúde e a qualidade de vida.</p><a class="primary" href="guia.html">Acessar guia prático ↗</a></div><div class="guide-art"><img src="assets/fisioterapia.webp" alt="Ilustração de fisioterapia"></div></section>
 <section class="section about" id="sobre"><img src="assets/logo.webp" alt="Logo Gabriel de Oliveira Fisioterapia"><div><p class="eyebrow">Conheça o profissional</p><h2>Gabriel de Oliveira</h2><p>Fisioterapeuta com atuação em atendimento domiciliar, reabilitação e cuidado individualizado. O acompanhamento considera as necessidades, os objetivos e o ritmo de cada paciente.</p><p><strong>CREFITO-9 437209-F</strong></p></div></section>
 </main><footer><span>© 2026 Gabriel de Oliveira • Fisioterapia</span><span>CREFITO-9 437209-F</span><span>Atendimento domiciliar</span></footer></div>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 <script>
 (function(){
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -118,10 +119,10 @@ nav a,.book,.primary,.quick a,.specialty,.service-card{transition:transform .35s
       const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
       hero.style.setProperty('--pointer-x',(x*9).toFixed(1)+'px');
       hero.style.setProperty('--pointer-y',(y*7).toFixed(1)+'px');
-      const person=hero.querySelector('.hero-person');
-      if(person) person.style.translate=(x*5).toFixed(1)+'px '+(y*3).toFixed(1)+'px';
+      const model=hero.querySelector('.hero-model');
+      if(model) model.style.translate=(x*5).toFixed(1)+'px '+(y*3).toFixed(1)+'px';
     });
-    hero.addEventListener('pointerleave',()=>{const p=hero.querySelector('.hero-person');if(p)p.style.translate='0 0';});
+    hero.addEventListener('pointerleave',()=>{const p=hero.querySelector('.hero-model');if(p)p.style.translate='0 0';});
   }
 })();
 </script>
